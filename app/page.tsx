@@ -2,11 +2,31 @@
 
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { ArrowRight, Github } from "lucide-react";
+import { useState } from "react";
+import {
+  ArrowRight,
+  Github,
+  House,
+  Settings,
+  User,
+  Bell,
+  Calendar,
+} from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "@/components/mode-toggle";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function Home() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background text-foreground bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-background to-background relative">
       <div className="absolute top-4 right-4">
@@ -64,6 +84,62 @@ export default function Home() {
           >
             Show Error Toast
           </Button>
+        </div>
+
+        <div className="grid grid-cols-5 gap-8 pt-8">
+          <div className="flex flex-col items-center gap-2">
+            <House className="h-8 w-8 text-primary" />
+            <span className="text-xs text-muted-foreground">House</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <Settings className="h-8 w-8 text-primary" />
+            <span className="text-xs text-muted-foreground">Settings</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <User className="h-8 w-8 text-primary" />
+            <span className="text-xs text-muted-foreground">User</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <Bell className="h-8 w-8 text-primary" />
+            <span className="text-xs text-muted-foreground">Bell</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <Calendar className="h-8 w-8 text-primary" />
+            <span className="text-xs text-muted-foreground">Calendar</span>
+          </div>
+        </div>
+
+        <div className="pt-8">
+          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <DialogTrigger asChild>
+              <Button variant="outline">Open Dialog</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Are you absolutely sure?</DialogTitle>
+                <DialogDescription>
+                  This action cannot be undone. This will permanently delete your
+                  account and remove your data from our servers.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <Button
+                  variant="outline"
+                  onClick={() => setIsDialogOpen(false)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={() => {
+                    setIsDialogOpen(false);
+                    toast.success("Account deleted");
+                  }}
+                >
+                  Confirm
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
       </main>
 
