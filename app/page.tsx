@@ -36,7 +36,7 @@ export default function Home() {
         {/* Hero Section */}
         <div className="space-y-4 pt-12">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-            Build Faster with <span className="text-primary">Shadcn UI</span>
+            Build Faster with <span className="text-primary">Template</span>
           </h1>
           <p className="mx-auto max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
             This is a template pre-configured with Shadcn UI and Tailwind CSS v4.
