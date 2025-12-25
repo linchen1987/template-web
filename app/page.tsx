@@ -1,4 +1,7 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 import { ArrowRight, Github } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "@/components/mode-toggle";
@@ -31,6 +34,35 @@ export default function Home() {
               <Github className="mr-2 h-4 w-4" />
               GitHub
             </Link>
+          </Button>
+          <Button
+            variant="ghost"
+            size="lg"
+            onClick={() =>
+              toast("Event has been created", {
+                description: "Sunday, December 03, 2023 at 9:00 AM",
+                action: {
+                  label: "Undo",
+                  onClick: () => console.log("Undo"),
+                },
+              })
+            }
+          >
+            Show Toast
+          </Button>
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={() => toast.success("Event has been created")}
+          >
+            Show Success Toast
+          </Button>
+          <Button
+            variant="destructive"
+            size="lg"
+            onClick={() => toast.error("Event has been created")}
+          >
+            Show Error Toast
           </Button>
         </div>
       </main>
